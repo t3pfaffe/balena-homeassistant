@@ -4,28 +4,26 @@ volumes:
 services:
   homeassistant:
     build: homeassistant
-    restart: always
-    network_mode: host
     ports:
       - 80:8123
     privileged: true
     volumes:
       - 'config:/config'
+    restart: always
     devices:
       - "/dev:/dev"
       - "/dev/serial/by-id/usb-0658_0200-if00:/dev/zwave"
+  mqtt:
+    image: arm32v6/eclipse-mosquitto
+    ports:
+      - "1883:1883"
+    restart: always
   hass-configurator:
     image: "causticlab/hass-configurator-docker:arm"
     restart: always
-    network_mode: host
     ports:
       - "8080:3218"
     volumes:
       - 'config:/hass-config'
     environment:
       - HC_BASEPATH=/hass-config
-  mqtt:               ## Disabling MQTT
-    image: arm32v6/eclipse-mosquitto
-    ports:
-      - "1883:1883"
-    restart: always
