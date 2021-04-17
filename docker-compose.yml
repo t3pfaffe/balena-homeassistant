@@ -5,7 +5,7 @@ volumes:
 
 services:
   homeassistant:
-    build: homeassistant
+    image: homeassistant/raspberrypi4-homeassistant:stable
     restart: always
     privileged: true
     network_mode: host
@@ -17,7 +17,7 @@ services:
       - "/dev:/dev"
       - "/dev/serial/by-id/usb-0658_0200-if00:/dev/zwave"
   hass-configurator:
-    image: "causticlab/hass-configurator-docker:arm"
+    image: causticlab/hass-configurator-docker:arm
     restart: unless-stopped
     ports:
       - 8080:3218
@@ -26,7 +26,7 @@ services:
     environment:
       - HC_BASEPATH=/hass-config
   mqtt:
-    image: arm32v6/eclipse-mosquitto
+    image: eclipse-mosquitto:latest
     restart: unless-stopped
     ports:
       - 1883:1883
