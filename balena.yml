@@ -5,11 +5,11 @@ assets:
   repository:
     type: "blob.asset"
     data:
-      url: "https://github.com/balenalabs-incubator/balena-homeassistant"
+      url: "https://github.com/t3pfaffe/balena-homeassistant"
   logo:
     type: "blob.asset"
     data:
-      url: "https://raw.githubusercontent.com/balenalabs-incubator/balena-homeassistant/master/logo.png"
+      url: "https://raw.githubusercontent.com/t3pfaffe/balena-homeassistant/master/logo.png"
 data:  
   defaultDeviceType: "raspberrypi4-64"
   supportedDeviceTypes:
