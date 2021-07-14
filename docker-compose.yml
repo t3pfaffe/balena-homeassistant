@@ -22,7 +22,8 @@ services:
       - "3218:3218/tcp"
     volumes:
       - "config:/hass-config"
-    environment: HC_BASEPATH=/hass-config
+    environment: 
+      HC_BASEPATH=/hass-config
     depends_on:
       - homeassistant
     restart: unless-stopped
