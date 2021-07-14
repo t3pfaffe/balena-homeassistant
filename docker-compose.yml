@@ -13,13 +13,12 @@ services:
     volumes:
       - "config:/config"
     devices:
-      - "/dev/ttyS0:/dev/ttyS0:rwm"
-      - "/dev/ttyAMA0:/dev/ttyAMA0:rwm"
+      - '/dev:/dev'
     restart: always
   hass-configurator:
     image: causticlab/hass-configurator-docker:0.4.1@sha256:fe38f7061f67bfdd41eb7b8c17b247a7988e422d693dd28cdfc0c874f7660c76
     ports:
-      - "3218:3218/tcp"
+      - "8080:3218/tcp"
     volumes:
       - "config:/hass-config"
     environment:
