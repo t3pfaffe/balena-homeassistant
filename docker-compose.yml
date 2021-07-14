@@ -6,27 +6,30 @@ volumes:
 services:
   homeassistant:
     image: homeassistant/raspberrypi4-64-homeassistant:2021.7.2
-    restart: always
     privileged: true
+    network_mode: "host"
     ports:
       - "80:8123"
     volumes:
       - "config:/config"
     devices:
-      - "/dev:/dev"
-      - "/dev/serial/by-id/usb-0658_0200-if00:/dev/zwave"
-      - "/dev/ttyAMA0:/dev/ttyAMA0"
+      - "/dev/ttyS0:/dev/ttyS0:rwm"
+      - "/dev/ttyAMA0:/dev/ttyAMA0:rwm"
+    restart: always
   hass-configurator:
     image: causticlab/hass-configurator-docker:0.4.1@sha256:fe38f7061f67bfdd41eb7b8c17b247a7988e422d693dd28cdfc0c874f7660c76
-    restart: unless-stopped
     ports:
       - "3218:3218/tcp"
     volumes:
       - "config:/hass-config"
-    environment:
-      - HC_BASEPATH=/hass-config
+    environment: HC_BASEPATH=/hass-config
+    depends_on:
+      - homeassistant
+    restart: unless-stopped
   mqtt:
     image: arm64v8/eclipse-mosquitto:2.0
-    restart: unless-stopped
     ports:
       - "1883:1883"
+    depends_on:
+      - homeassistant
+    restart: unless-stopped
