@@ -23,7 +23,7 @@ services:
     volumes:
       - "config:/hass-config"
     environment:
-      HC_BASEPATH: /hass-config
+      - HC_BASEPATH: /hass-config
     depends_on:
       - homeassistant
     restart: unless-stopped
