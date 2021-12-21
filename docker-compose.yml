@@ -5,7 +5,7 @@ volumes:
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-64-homeassistant:2021.7.2
+    image: homeassistant/raspberrypi4-64-homeassistant:2021.12.3
     container_name: hass-serve
     restart: always
     privileged: true
@@ -32,7 +32,6 @@ services:
       - HC_BASEPATH={CONFIG_PATH:-/hass-config}
     depends_on:
       - homeassistant
-    restart: unless-stopped
   mqtt:
     image: arm64v8/eclipse-mosquitto:2.0
     container_name: mqtt-bridge
