@@ -5,7 +5,7 @@ volumes:
 
 services:
   homeassistant:
-    image: homeassistant/raspberrypi4-64-homeassistant:2022.3.8
+    image: homeassistant/raspberrypi4-64-homeassistant:2022.6.2
     container_name: hass-serve
     restart: always
     privileged: true
@@ -33,7 +33,7 @@ services:
     depends_on:
       - homeassistant
   mqtt:
-    image: arm64v8/eclipse-mosquitto:2.0
+    image: arm64v8/eclipse-mosquitto:2.0.14
     container_name: mqtt-bridge
     ports:
       - "1883:1883"
