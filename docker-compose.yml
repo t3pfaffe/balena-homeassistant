@@ -18,7 +18,7 @@ services:
       - "/dev/ttyAMA0:/dev/ttyAMA0"
       - "/dev/vcio:/dev/vcio"
     environment:
-      - TZ=${TIME_ZONE:-America/New_York}
+      - TZ=America/New_York
 
   hass-configurator:
     image: causticlab/hass-configurator-docker:0.5.2@sha256:ec2002abf216f64a6f0927c12032356141b8bb0e5b40e0e43fec3511df4e02b4
@@ -27,9 +27,9 @@ services:
     ports:
       - "8080:3218/tcp"
     volumes:
-      - "config:/hass-config"
+      - config:/hass-config
     environment:
-      - HC_BASEPATH={CONFIG_PATH:-/hass-config}
+      - HC_BASEPATH=/hass-config
     depends_on:
       - homeassistant
   mqtt:
