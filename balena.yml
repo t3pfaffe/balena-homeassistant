@@ -1,4 +1,5 @@
 name: "Home Assistant"
+version: 2025.2.5
 description: "Open source home automation that puts local control and privacy first; a Home Assistant, HASS Config, and MQTT stack."
 type: "sw.application"
 assets:
@@ -13,6 +14,4 @@ assets:
 data:  
   defaultDeviceType: "raspberrypi4-64"
   supportedDeviceTypes:
-    - "raspberrypi3"
     - "raspberrypi4-64"
-    - "fincm3"
