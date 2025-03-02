@@ -21,6 +21,8 @@ services:
     environment:
       TZ: America/New_York
     network_mode: host
+    labels:
+      io.balena.features.dbus: 1
 
   hass-configurator:
     image: causticlab/hass-configurator-docker:0.5.2@sha256:ec2002abf216f64a6f0927c12032356141b8bb0e5b40e0e43fec3511df4e02b4
