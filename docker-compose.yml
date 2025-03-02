@@ -15,7 +15,7 @@ services:
     restart: always
     volumes:
       - config:/config
-      # - /run/dbus:/run/dbus:ro
+      - /run/dbus:/run/dbus:ro
       # - /etc/localtime:/etc/localtime:ro
     privileged: true
     environment:
