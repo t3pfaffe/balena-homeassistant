@@ -7,20 +7,20 @@ services:
   homeassistant:
     image: homeassistant/aarch64-homeassistant:2025.2.5
     container_name: hass-serve
-    restart: always
-    privileged: true
-    network_mode: host
     ports:
-      - "80:8123"
+      - '80:8123'
+    devices:
+      - /dev/ttyAMA0:/dev/ttyAMA0
+      - /dev/vcio:/dev/vcio
+    restart: always
     volumes:
       - config:/config
-      - /run/dbus:/run/dbus:ro
-      - /etc/localtime:/etc/localtime:ro
-    devices:
-      - "/dev/ttyAMA0:/dev/ttyAMA0"
-      - "/dev/vcio:/dev/vcio"
+      # - /run/dbus:/run/dbus:ro
+      # - /etc/localtime:/etc/localtime:ro
+    privileged: true
     environment:
-      - TZ=America/New_York
+      TZ: America/New_York
+    network_mode: host
 
   hass-configurator:
     image: causticlab/hass-configurator-docker:0.5.2@sha256:ec2002abf216f64a6f0927c12032356141b8bb0e5b40e0e43fec3511df4e02b4
